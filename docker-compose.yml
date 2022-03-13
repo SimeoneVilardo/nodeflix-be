@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  nginx:
+    container_name: nodeflix-be
+    image: nodeflix-be
+    ports:
+      - "2000:2000"
+    volumes:
+      - /home/ubuntu/prod/nodeflix-be/videos:/usr/src/app/videos:ro
+      - /home/ubuntu/prod/nodeflix-be/subs:/usr/src/app/subs:ro
+    network_mode: "bridge"
+    environment:
+      - VIRTUAL_HOST=nodeflix.ga
+      - VIRTUAL_PATH=/api/
+      - LETSENCRYPT_HOST=nodeflix.ga
